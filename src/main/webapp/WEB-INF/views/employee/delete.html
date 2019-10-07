@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/employee/layout :: head">
+    <meta charset="UTF-8">
+    <title>Delete Employee</title>
+</head>
+<body>
+<h1>Delete Employee</h1>
+<h2>Are you sure?</h2>
+<p>
+    <a href="/employees">Employee list</a>
+</p>
+<div id="form">
+<form th:action="@{/delete-employee}" th:object="${employee}" method="post" enctype="multipart/form-data">
+    <input th:type="hidden" name="id" th:field="*{id}">
+    <table>
+        <tr>
+            <td>Name:</td>
+            <td th:text="${employee.name}"></td>
+        </tr>
+        <tr>
+            <td>BirthDate:</td>
+            <td th:text="${employee.birthDate}"></td>
+        </tr>
+        <tr>
+            <td>Address:</td>
+            <td th:text="${employee.address}"></td>
+        </tr>
+        <tr>
+            <td>Avatar:</td>
+            <td th:text="${employee.avatar}"></td>
+            <td><img width="150px" height="150px" th:src="@{'/i/' + ${employee.avatar}}"></td>
+        </tr>
+        <tr>
+            <td>Salary:</td>
+            <td th:text="${employee.salary}"></td>
+        </tr>
+        <tr>
+            <td>Department: </td>
+            <td th:text="${employee.department.name}"></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><input type="submit" value="Delete Employee"></td>
+        </tr>
+    </table>
+</form>
+</div>
+<footer th:replace="/employee/layout :: footer"></footer>
+</body>
+</html>
